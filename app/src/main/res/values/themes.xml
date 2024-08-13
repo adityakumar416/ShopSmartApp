@@ -2,7 +2,12 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.ShopSmart" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+         <item name="colorPrimary">@color/brown_500</item>
+
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="fontFamily">@font/poppins_medium</item> <!-- For backward compatibility -->
+
+
     </style>
 
     <style name="Theme.ShopSmart" parent="Base.Theme.ShopSmart" />
