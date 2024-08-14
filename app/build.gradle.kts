@@ -54,4 +54,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+
+    implementation("com.github.zhpanvip:bannerviewpager:3.5.11")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
+
+
 }

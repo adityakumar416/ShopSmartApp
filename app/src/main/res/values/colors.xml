@@ -10,9 +10,9 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="colorAccent" >#FF4081</color>
-    <color name="colorPrimary" >#8D7CF6</color>
-    <color name="colorPrimaryLight" >#8D7CF6</color>
-    <color name="colorPrimaryDark" >#8D7CF6</color>
+    <color name="colorPrimary" >#521C98</color>
+    <color name="colorPrimaryLight" >#A421D2</color>
+    <color name="colorPrimaryDark" >#A421D2</color>
 
     <color name="colorPrimaryLightest" >#8D7CF6</color>
     <color name="transparent">#00000000</color>
