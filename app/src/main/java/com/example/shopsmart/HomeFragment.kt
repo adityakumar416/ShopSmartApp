@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopsmart.adapter.BannerAdapter
+import com.example.shopsmart.adapter.ProductAdapter
 import com.example.shopsmart.databinding.FragmentHomeBinding
 import com.example.shopsmart.modelClass.BannerModel
 import com.example.shopsmart.viewModel.MainViewModel
@@ -21,6 +24,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val mainViewModel: MainViewModel by activityViewModels()
     private lateinit var bannerViewPager: BannerViewPager<BannerModel>
+    private lateinit var productAdapter: ProductAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +52,16 @@ class HomeFragment : Fragment() {
             }
             binding.progressBar.visibility = View.GONE
         })
+
+
+        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(),2)
+        productAdapter = ProductAdapter(emptyList())
+        binding.recyclerView.adapter = productAdapter
+
+        mainViewModel.productList.observe(viewLifecycleOwner) { products ->
+            productAdapter.updateData(products)
+        }
+        mainViewModel.fetchProducts()
 
         mainViewModel.fetchBanners()
 
