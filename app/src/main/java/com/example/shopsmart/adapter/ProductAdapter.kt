@@ -1,0 +1,47 @@
+package com.example.shopsmart.adapter
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.shopsmart.ProductClickListner
+import com.example.shopsmart.R
+import com.example.shopsmart.databinding.ProductItemBinding
+import com.example.shopsmart.modelClass.ProductModel
+
+class ProductAdapter(private var products: List<ProductModel>, private var listener: ProductClickListner ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+
+    inner class ProductViewHolder(private val binding: ProductItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(product: ProductModel) {
+            binding.productName.text = product.name
+            binding.price.text = "₹ ${product.price}"
+            binding.rating.text = product.rating.toString()
+            binding.productImage.setImageResource(R.drawable.item_1)
+            // Glide.with(binding.productImage.context).load(product.imageUrl).into(binding.productImage)
+
+            binding.root.setOnClickListener {
+                listener.onClick(product)
+            }
+
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
+        val binding = ProductItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ProductViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
+        holder.bind(products[position])
+    }
+
+    override fun getItemCount(): Int {
+        return products.size
+    }
+
+    fun updateData(newProducts: List<ProductModel>) {
+        this.products = newProducts
+        notifyDataSetChanged()
+    }
+
+}
