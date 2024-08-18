@@ -1,6 +1,7 @@
 package com.example.shopsmart
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -23,5 +24,21 @@ class MainActivity : AppCompatActivity() {
 
         // Set up BottomNavigationView with NavController
         navView.setupWithNavController(navController)
+
+
+
+
+
     }
+    // In your MainActivity or the Activity hosting the BottomNavigationView
+    fun setBottomNavigationVisibility(visible: Boolean) {
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        if (visible) {
+            bottomNavigationView.visibility = View.VISIBLE
+        } else {
+            bottomNavigationView.visibility = View.GONE
+        }
+    }
+
 }
+

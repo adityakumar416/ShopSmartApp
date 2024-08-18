@@ -5,4 +5,5 @@ import com.example.shopsmart.modelClass.ProductModel
 interface ProductClickListner {
 
     fun onClick(productModel: ProductModel)
+    fun onFavouriteClick(productModel: ProductModel)
 }

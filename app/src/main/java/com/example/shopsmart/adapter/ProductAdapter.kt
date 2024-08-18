@@ -9,20 +9,32 @@ import com.example.shopsmart.R
 import com.example.shopsmart.databinding.ProductItemBinding
 import com.example.shopsmart.modelClass.ProductModel
 
-class ProductAdapter(private var products: List<ProductModel>, private var listener: ProductClickListner ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class ProductAdapter(private var products: List<ProductModel>, private var listener: ProductClickListner) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     inner class ProductViewHolder(private val binding: ProductItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(product: ProductModel) {
             binding.productName.text = product.name
             binding.price.text = "₹ ${product.price}"
             binding.rating.text = product.rating.toString()
-            binding.productImage.setImageResource(R.drawable.item_1)
-            // Glide.with(binding.productImage.context).load(product.imageUrl).into(binding.productImage)
+            Glide.with(binding.productImage.context).load(product.imageUrl).into(binding.productImage)
+
+           // binding.productImage.setImageResource(R.drawable.item_1)
+
+            // Set the favorite icon based on the favorite status
+            binding.favourite.setImageResource(
+                if (product.favoriteProduct) R.drawable.red_hearts else R.drawable.blank_heart_fev_icon
+            )
+
+            binding.favourite.setOnClickListener {
+                // Toggle the favorite status
+                product.favoriteProduct = !product.favoriteProduct
+                listener.onFavouriteClick(product)
+                notifyItemChanged(adapterPosition)
+            }
 
             binding.root.setOnClickListener {
                 listener.onClick(product)
             }
-
         }
     }
 
@@ -43,5 +55,4 @@ class ProductAdapter(private var products: List<ProductModel>, private var liste
         this.products = newProducts
         notifyDataSetChanged()
     }
-
 }

@@ -24,6 +24,7 @@
             android:src="@drawable/item_1" />
 
         <ImageView
+            android:id="@+id/favourite"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_marginStart="14dp"
