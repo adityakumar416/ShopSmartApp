@@ -6,14 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopsmart.adapter.OrderAdapter
 import com.example.shopsmart.databinding.FragmentCartBinding
 import com.example.shopsmart.databinding.FragmentMyorderBinding
+import com.example.shopsmart.interfaces.OrderClickListner
+import com.example.shopsmart.modelClass.OrderModel
 import com.example.shopsmart.viewModel.MainViewModel
 
 
-class MyOrderFragment : Fragment() {
+class MyOrderFragment : Fragment(),OrderClickListner {
 
     private lateinit var binding: FragmentMyorderBinding
     private val viewModel: MainViewModel by activityViewModels()
@@ -36,7 +39,7 @@ class MyOrderFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        orderAdapter = OrderAdapter(emptyList())
+        orderAdapter = OrderAdapter(emptyList(),this)
         binding.recyclerView.adapter = orderAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
@@ -52,5 +55,9 @@ class MyOrderFragment : Fragment() {
                 orderAdapter.updateOrders(orders)
             }
         }
+    }
+
+    override fun onOrderClick(orderModel: OrderModel) {
+      findNavController().navigate(R.id.action_myOrderFragment_to_orderStatusFragment)
     }
 }

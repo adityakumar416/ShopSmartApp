@@ -37,7 +37,11 @@
         android:id="@+id/myOrderFragment"
         android:name="com.example.shopsmart.MyOrderFragment"
         android:label="fragment_myorder"
-        tools:layout="@layout/fragment_myorder" />
+        tools:layout="@layout/fragment_myorder" >
+        <action
+            android:id="@+id/action_myOrderFragment_to_orderStatusFragment"
+            app:destination="@id/orderStatusFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.shopsmart.ProfileFragment"
@@ -53,6 +57,11 @@
             android:name="productmodel"
             app:argType="com.example.shopsmart.modelClass.ProductModel" />
     </fragment>
+    <fragment
+        android:id="@+id/orderStatusFragment"
+        android:name="com.example.shopsmart.OrderStatusFragment"
+        android:label="fragment_order_status"
+        tools:layout="@layout/fragment_order_status" />
 
 
 </navigation>

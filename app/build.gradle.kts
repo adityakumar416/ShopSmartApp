@@ -60,6 +60,7 @@ dependencies {
 
     implementation("com.github.zhpanvip:bannerviewpager:3.5.11")
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation ("com.github.vipulasri:timelineview:1.1.5")
 
 
 
