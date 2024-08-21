@@ -1,20 +1,24 @@
 package com.example.shopsmart.viewModel
 
+import android.app.Application
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.shopsmart.MainActivity
+import com.example.shopsmart.addDeliveryAddress.AddressModel
 import com.example.shopsmart.modelClass.BannerModel
 import com.example.shopsmart.modelClass.OrderModel
 import com.example.shopsmart.modelClass.ProductModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
-class MainViewModel : ViewModel() {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val firebaseStorage = FirebaseStorage.getInstance().getReference("banners")
     private val firestoreBanners = FirebaseFirestore.getInstance().collection("banners")
@@ -26,12 +30,22 @@ class MainViewModel : ViewModel() {
     val productList = MutableLiveData<List<ProductModel>>()
 
     // LiveData for cart items
-     val cartItems = MutableLiveData<List<ProductModel>>()
+    val cartItems = MutableLiveData<List<ProductModel>>()
 
-     val removeCartItems = MutableLiveData<List<ProductModel>?>()
+    val removeCartItems = MutableLiveData<List<ProductModel>?>()
 
     val orderList = MutableLiveData<List<OrderModel>>()
 
+    val selectedPaymentMethod = MutableLiveData<String>()
+
+
+    // user address
+    private val firestore = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
+
+    val addresses = MutableLiveData<List<AddressModel>>()
+
+    val saveStatus = MutableLiveData<Boolean>()
 
     // Fetch banners from Firestore
     fun fetchBanners() {
@@ -66,7 +80,11 @@ class MainViewModel : ViewModel() {
             try {
                 val existingProduct = cartCollection.document(product.id).get().await()
                 if (existingProduct.exists()) {
-                    Toast.makeText(activity, "Product is already added to the cart", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        activity,
+                        "Product is already added to the cart",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     Log.d("MainViewModel", "Product already in cart: ${product.id}")
                 } else {
                     cartCollection.document(product.id).set(product).await()
@@ -148,7 +166,8 @@ class MainViewModel : ViewModel() {
                 Toast.makeText(activity, "Order placed successfully!", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener { e ->
-                Toast.makeText(activity, "Failed to place order: ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, "Failed to place order: ${e.message}", Toast.LENGTH_LONG)
+                    .show()
             }
     }
 
@@ -168,5 +187,82 @@ class MainViewModel : ViewModel() {
     }
 
 
+    // Save the address under the "addresses" node only
+    fun saveAddress(addressModel: AddressModel) {
+        val documentReference = firestore.collection("addresses").document()
+
+        val addressWithId = addressModel.copy(id = documentReference.id)
+        documentReference.set(addressWithId)
+            .addOnSuccessListener {
+                saveStatus.value = true
+            }
+            .addOnFailureListener {
+                saveStatus.value = false
+            }
+    }
+
+    fun updateAddress(address: AddressModel) {
+        val document = firestore.collection("addresses").document(address.id)
+        document.set(address)
+            .addOnSuccessListener {
+                saveStatus.value = true
+            }
+            .addOnFailureListener {
+                saveStatus.value = false
+            }
+    }
+
+    // ViewModel code for fetching and managing addresses
+    fun fetchAddresses() {
+        firestore.collection("addresses")
+            .get()
+            .addOnSuccessListener { documents ->
+                val addressList = documents.mapNotNull { document ->
+                    document.toObject(AddressModel::class.java)?.copy(id = document.id)
+                }
+                addresses.value = addressList
+            }
+            .addOnFailureListener {
+                addresses.value = emptyList()
+            }
+    }
+
+
+    private val userId = "user-id" // Replace with actual user ID
+
+    val selectedAddress = MutableLiveData<AddressModel?>()
+
+
+    fun selectAddress(address: AddressModel) {
+        selectedAddress.value = address
+        saveSelectedAddressToFirestore(address)
+    }
+
+    private fun saveSelectedAddressToFirestore(address: AddressModel) {
+        firestore.collection("users")
+            .document(userId)
+            .collection("addresses")
+            .document("selectedAddress")
+            .set(address) // Firestore handles serialization
+    }
+
+    fun loadSelectedAddressFromFirestore() {
+        firestore.collection("users")
+            .document(userId)
+            .collection("addresses")
+            .document("selectedAddress")
+            .get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    val address = document.toObject(AddressModel::class.java)
+                    selectedAddress.value = address
+
+                    // Ensure the correct address is marked as selected in the list
+                    addresses.value?.forEach {
+                        it.selectedAddress = it.id == address?.id
+                    }
+                }
+            }
+    }
 
 }
