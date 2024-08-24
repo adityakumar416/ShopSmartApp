@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -22,7 +23,7 @@ class ProductDetailsFragment : Fragment() {
     private lateinit var binding: FragmentProductDetailsBinding
     private val args: ProductDetailsFragmentArgs by navArgs()
     private val mainViewModel: MainViewModel by viewModels()
-
+    private var selectedAddress = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,15 +68,29 @@ class ProductDetailsFragment : Fragment() {
             mainViewModel.addToCart(args.productmodel, activity as MainActivity)
         }
 
+        mainViewModel.selectedAddress.observe(viewLifecycleOwner) { address ->
+            address?.let {
+                selectedAddress = "${it.address}, ${it.city}, ${it.state}, ${it.pincode}"
+            }
+        }
+        mainViewModel.loadSelectedAddressFromFirestore()
+
+
         return binding.root
     }
 
-
     private fun placeOrder() {
+        // Ensure product quantity is available and valid
+        if (args.productmodel.productQuantity <= 0) {
+            Toast.makeText(context, "Invalid product quantity", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val orderId = generateUniqueOrderId()
         val orderDate = getCurrentDate()
-        val paymentMethod = "Cash on Delivery" // Assuming Cash on Delivery (you can change this as per your payment method selection)
+        val paymentMethod = mainViewModel.selectedPaymentMethod.value // Assuming Cash on Delivery (you can change this as per your payment method selection)
         val orderStatus = "Pending"
+        val deliveryDate = "2024-08-31" // Example date; you might get this from user input
 
         val order = OrderModel(
             id = args.productmodel.id,
@@ -90,12 +105,16 @@ class ProductDetailsFragment : Fragment() {
             orderDate = orderDate,
             orderStatus = orderStatus,
             orderId = orderId,
-            paymentMethod = paymentMethod
+            paymentMethod = paymentMethod.toString(),
+            orderAddress = selectedAddress, // Address needs to be set; consider adding a method to get it from the user or selected address
+            orderItemQuantity = args.productmodel.productQuantity.toString(),
+            getDeliveryDate = deliveryDate
         )
 
         mainViewModel.placeOrder(order, activity as MainActivity)
 
-
+        // Optionally, navigate to a confirmation screen or display a success message
+     //   findNavController().navigate(R.id.action_productDetailsFragment_to_orderConfirmationFragment)
     }
 
     private fun generateUniqueOrderId(): String {

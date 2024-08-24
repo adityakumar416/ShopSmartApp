@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_cartFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_viewAllAddressFragment"
+            app:destination="@id/viewAllAddressFragment" />
     </fragment>
     <fragment
         android:id="@+id/wishlistFragment"
@@ -46,7 +49,20 @@
         android:id="@+id/profileFragment"
         android:name="com.example.shopsmart.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_viewAllAddressFragment"
+            app:destination="@id/viewAllAddressFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_myOrderFragment"
+            app:destination="@id/myOrderFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_wishlistFragment"
+            app:destination="@id/wishlistFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.example.shopsmart.ProductDetailsFragment"
@@ -62,6 +78,32 @@
         android:name="com.example.shopsmart.OrderStatusFragment"
         android:label="fragment_order_status"
         tools:layout="@layout/fragment_order_status" />
+    <fragment
+        android:id="@+id/addDeliveryAddressFragment"
+        android:name="com.example.shopsmart.addDeliveryAddress.AddDeliveryAddressFragment"
+        android:label="fragment_add_delivery_address"
+        tools:layout="@layout/fragment_add_delivery_address" >
+    </fragment>
+    <fragment
+        android:id="@+id/viewAllAddressFragment"
+        android:name="com.example.shopsmart.addDeliveryAddress.ViewAllAddressFragment"
+        android:label="fragment_view_all_address"
+        tools:layout="@layout/fragment_view_all_address" >
+        <action
+            android:id="@+id/action_viewAllAddressFragment_to_addDeliveryAddressFragment"
+            app:destination="@id/addDeliveryAddressFragment" />
+        <action
+            android:id="@+id/action_viewAllAddressFragment_to_updateAddressFragment"
+            app:destination="@id/updateAddressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateAddressFragment"
+        android:name="com.example.shopsmart.addDeliveryAddress.UpdateAddressFragment"
+        android:label="UpdateAddressFragment" >
+        <argument
+            android:name="updateAddress"
+            app:argType="com.example.shopsmart.addDeliveryAddress.AddressModel" />
+    </fragment>
 
 
 </navigation>

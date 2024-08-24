@@ -1,5 +1,6 @@
 package com.example.shopsmart
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +23,8 @@ import com.zhpan.indicator.enums.IndicatorStyle
 
 class HomeFragment : Fragment(), ProductClickListner {
 
-    private lateinit var binding: FragmentHomeBinding
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
     private val mainViewModel: MainViewModel by activityViewModels()
     private lateinit var bannerViewPager: BannerViewPager<BannerModel>
     private lateinit var productAdapter: ProductAdapter
@@ -32,8 +34,7 @@ class HomeFragment : Fragment(), ProductClickListner {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         // Initialize BannerViewPager
         bannerViewPager = binding.root.findViewById(R.id.banner_view)
@@ -55,8 +56,12 @@ class HomeFragment : Fragment(), ProductClickListner {
             binding.progressBar.visibility = View.GONE
         })
 
+        // Get the screen orientation and set the number of columns
+        val spanCount = if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) 2 else 4
 
-        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), spanCount)
+        binding.recyclerView.setHasFixedSize(true)
+
         productAdapter = ProductAdapter(emptyList(), this)
         binding.recyclerView.adapter = productAdapter
 
@@ -68,6 +73,12 @@ class HomeFragment : Fragment(), ProductClickListner {
         mainViewModel.fetchProducts()
         mainViewModel.fetchBanners()
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         // Restore the scroll position if available
         if (savedInstanceState != null) {
             scrollPosition = savedInstanceState.getInt("scroll_position")
@@ -75,15 +86,21 @@ class HomeFragment : Fragment(), ProductClickListner {
                 binding.nestedScrollView.scrollTo(0, scrollPosition)
             }
         }
-
-        return binding.root
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        // Save the current scroll position
-        scrollPosition = binding.nestedScrollView.scrollY
-        outState.putInt("scroll_position", scrollPosition)
+
+        // Save the current scroll position if _binding is not null
+        _binding?.let {
+            scrollPosition = it.nestedScrollView.scrollY
+            outState.putInt("scroll_position", scrollPosition)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onClick(product: ProductModel) {
@@ -94,7 +111,4 @@ class HomeFragment : Fragment(), ProductClickListner {
     override fun onFavouriteClick(productModel: ProductModel) {
         mainViewModel.updateProductFavoriteStatus(productModel)
     }
-
-
-
 }

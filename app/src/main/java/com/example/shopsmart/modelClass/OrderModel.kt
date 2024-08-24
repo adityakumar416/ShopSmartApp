@@ -14,5 +14,7 @@ data class OrderModel(
     val orderStatus: String = "",
     val orderId: String = "",
     val paymentMethod: String = "",
-
+    val orderAddress: String = "",
+    val orderItemQuantity: String = "",
+    val getDeliveryDate: String = "",
 )
