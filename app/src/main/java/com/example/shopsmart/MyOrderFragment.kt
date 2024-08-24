@@ -1,10 +1,10 @@
 package com.example.shopsmart
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,33 +19,51 @@ class MyOrderFragment : Fragment(), OrderClickListner {
     private lateinit var binding: FragmentMyorderBinding
     private val viewModel: MainViewModel by activityViewModels()
     private lateinit var orderAdapter: OrderAdapter
-    private var selectedChipId: Int = R.id.chip_all // Variable to store the selected chip ID
+    private var selectedChipId: Int = R.id.chip_all // Default selected chip ID
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        binding = FragmentMyorderBinding.inflate(layoutInflater, container, false)
+        binding = FragmentMyorderBinding.inflate(inflater, container, false)
 
+        // Setup RecyclerView
         setupRecyclerView()
-        observeOrders()
 
-        // Restore the previously selected chip
-        binding.chipGroup.check(selectedChipId)
-
-        // Apply the filter based on the saved chip state
+        // Set up ChipGroup listener to filter orders based on chip selection
         binding.chipGroup.setOnCheckedChangeListener { _, checkedId ->
             selectedChipId = checkedId // Save the selected chip ID
             filterOrdersBasedOnChip(checkedId)
         }
 
-        // Apply the filter based on the selected chip ID
-        filterOrdersBasedOnChip(selectedChipId)
-
-        viewModel.fetchOrders() // Fetch orders when fragment is created
+        // Restore the previously selected chip or apply default filter
+        if (savedInstanceState != null) {
+            selectedChipId = savedInstanceState.getInt("selected_chip_id", R.id.chip_all)
+        }
+        binding.chipGroup.check(selectedChipId)
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Observe orders only once when the fragment is created
+        observeOrders()
+
+        // Fetch orders only if it's the first time or the list is empty
+        if (viewModel.orderList.value == null) {
+            viewModel.fetchOrders()
+        } else {
+            filterOrdersBasedOnChip(selectedChipId)
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        // Save the selected chip ID
+        outState.putInt("selected_chip_id", selectedChipId)
     }
 
     private fun setupRecyclerView() {

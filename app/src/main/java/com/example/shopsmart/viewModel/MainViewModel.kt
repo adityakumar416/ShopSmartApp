@@ -1,6 +1,7 @@
 package com.example.shopsmart.viewModel
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
@@ -34,10 +35,28 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     val removeCartItems = MutableLiveData<List<ProductModel>?>()
 
+    // LiveData to observe the filtered order list in the fragment
     val orderList = MutableLiveData<List<OrderModel>>()
 
+    // A variable to store the original list of all fetched orders
+    private var originalOrderList: List<OrderModel> = emptyList()
+
+    private val sharedPreferences = application.getSharedPreferences("ShopSmartPrefs", Context.MODE_PRIVATE)
     val selectedPaymentMethod = MutableLiveData<String>()
 
+    init {
+        // Load saved payment method from SharedPreferences
+        selectedPaymentMethod.value = loadPaymentMethod()
+    }
+
+    fun savePaymentMethod(method: String) {
+        selectedPaymentMethod.value = method
+        sharedPreferences.edit().putString("payment_method", method).apply()
+    }
+
+    private fun loadPaymentMethod(): String {
+        return sharedPreferences.getString("payment_method", "Cash on Delivery") ?: "Cash on Delivery"
+    }
 
     // user address
     private val firestore = FirebaseFirestore.getInstance()
@@ -177,7 +196,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 val ordersCollection = FirebaseFirestore.getInstance().collection("orders")
                 val orderSnapshot = ordersCollection.get().await()
                 val orders = orderSnapshot.toObjects(OrderModel::class.java)
-                orderList.postValue(orders)
+
+                // Save the fetched orders to originalOrderList
+                originalOrderList = orders
+
+                // Post the fetched orders to the LiveData
+                orderList.postValue(originalOrderList)
                 Log.d("MainViewModel", "Fetched orders: $orders")
             } catch (e: Exception) {
                 orderList.postValue(emptyList())
@@ -264,5 +288,16 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 }
             }
     }
+
+
+    fun filterOrders(status: String) {
+        orderList.value = if (status == "All") {
+            originalOrderList
+        } else {
+            originalOrderList.filter { it.orderStatus == status }
+        }
+    }
+
+
 
 }

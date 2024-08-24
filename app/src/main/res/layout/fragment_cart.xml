@@ -48,6 +48,19 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:elevation="4dp"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/product_progressBar"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_scroll_view"
         android:layout_width="match_parent"
@@ -71,13 +84,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp" />
-
-            <ProgressBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/product_progressBar"
-                android:elevation="4dp"
-                android:layout_centerInParent="true"/>
 
             <TextView
                 android:id="@+id/order_summary"
@@ -305,13 +311,15 @@
 
                         <TextView
                             android:id="@+id/address"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/address_icon"
+                            android:layout_marginEnd="14dp"
+                            android:singleLine="true"
                             android:layout_marginStart="6dp"
                             android:textStyle="bold"
                             android:text="Seohara, Bijnor, 246746"
-                            android:textSize="18sp"/>
+                            android:textSize="16sp"/>
 
 
                     </RelativeLayout>

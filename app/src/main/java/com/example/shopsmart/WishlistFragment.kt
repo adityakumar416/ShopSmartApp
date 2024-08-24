@@ -1,5 +1,6 @@
 package com.example.shopsmart
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,7 +25,12 @@ class WishlistFragment : Fragment() {
     ): View? {
         binding = FragmentWishlistBinding.inflate(layoutInflater, container, false)
 
-        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        // Get the screen orientation and set the number of columns
+        val spanCount = if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) 2 else 4
+
+        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), spanCount)
+        binding.recyclerView.setHasFixedSize(true)
+
         productAdapter = ProductAdapter(emptyList(), object : ProductClickListner {
             override fun onClick(product: ProductModel) {
                 val action = WishlistFragmentDirections.actionWishlistFragmentToProductDetailsFragment(product)
@@ -54,8 +60,6 @@ class WishlistFragment : Fragment() {
             binding.wishListProgressBar.visibility = View.GONE
         }
 
-
         return binding.root
     }
-
 }

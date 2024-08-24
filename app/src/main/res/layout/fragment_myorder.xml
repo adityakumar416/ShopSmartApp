@@ -65,12 +65,13 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
 
-            <LinearLayout
+            <HorizontalScrollView
                 android:id="@+id/chips_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
                 android:orientation="vertical"
+                android:scrollbars="none"
                 android:gravity="center_horizontal">
 
                 <com.google.android.material.chip.ChipGroup
@@ -78,37 +79,50 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clipToPadding="false"
-                    android:paddingHorizontal="15dp"
+                    android:paddingHorizontal="26dp"
                     app:chipSpacingHorizontal="20dp"
                     app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/chip_alltime"
+                        android:id="@+id/chip_all"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="All Order"
+                        android:checked="true"
+                        />
+
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_complete"
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Completed"
-                        android:textColor="@color/black" />
+                        />
+
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/chip_today"
+                        android:id="@+id/chip_cancelled"
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Cancelled"
-                        android:textColor="@color/black"/>
+                         />
+
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/chip_yesterday"
+                        android:id="@+id/chip_pending"
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pending"
-                        android:textColor="@color/black" />
+                        />
+
 
                 </com.google.android.material.chip.ChipGroup>
 
-            </LinearLayout>
+            </HorizontalScrollView>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
