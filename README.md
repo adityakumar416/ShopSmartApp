@@ -61,6 +61,11 @@ ViewAllProductFragment: Admin-specific functionality for viewing all products, w
 Address Management: Separate fragments for viewing all addresses (ViewAllAddressFragment) and adding new addresses (AddDeliveryAddressFragment).
 
 ![WhatsApp Image 2024-08-25 at 7 00 46 AM](https://github.com/user-attachments/assets/c6b56045-c736-4189-ad97-6e2a4ed6e58c)
+![WhatsApp Image 2024-08-25 at 7 00 47 AM](https://github.com/user-attachments/assets/e4ee9b21-553e-4c7f-a847-a4df9dab9b03)
+![WhatsApp Image 2024-08-25 at 7 00 48 AM](https://github.com/user-attachments/assets/84107057-b148-4b62-a842-01a30100461c)
+![WhatsApp Image 2024-08-25 at 7 00 48 AM (1)](https://github.com/user-attachments/assets/584231df-c500-4606-aa58-2e5b27699fff)
+![WhatsApp Image 2024-08-25 at 7 00 48 AM (2)](https://github.com/user-attachments/assets/ede15d7f-7381-4929-a2c5-be025566a116)
+
 
 Getting Started
 To run this project locally, follow these steps:
