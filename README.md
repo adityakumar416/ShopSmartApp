@@ -79,7 +79,7 @@ Clone the repository:
 
 bash
 Copy code
-git clone https://github.com/YourUsername/ShopSmart.git
+git clone https://github.com/adityakumar416/ShopSmartApp.git
 cd ShopSmart
 Set up Firebase:
 
