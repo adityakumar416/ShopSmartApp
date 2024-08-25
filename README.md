@@ -1,6 +1,8 @@
-ShopSmart - Your Smart Shopping Companion Welcome to ShopSmart, an intuitive and user-friendly e-commerce app designed to provide users with a seamless shopping experience. Whether you're browsing through our curated collections or managing your wishlist, ShopSmart offers all the essential features for a modern shopping app.
+ShopSmart - Your Smart Shopping Companion
+Welcome to ShopSmart, an intuitive and user-friendly e-commerce app designed to provide users with a seamless shopping experience. Whether you're browsing through our curated collections or managing your wishlist, ShopSmart offers all the essential features for a modern shopping app.
 
-Key Features User Authentication: Secure login and registration process with email verification to ensure a safe shopping environment.
+Key Features
+User Authentication: Secure login and registration process with email verification to ensure a safe shopping environment.
 
 Product Listings: Browse through a wide range of products across various categories like electronics, clothing, beauty products, and more.
 
@@ -20,7 +22,8 @@ Seamless Navigation: Enjoy smooth transitions between different sections of the 
 
 Order Tracking: Keep track of your orders in the "My Orders" section, complete with status updates and detailed order information.
 
-Technologies Used Kotlin: The primary programming language for the app, leveraging its concise syntax and safety features.
+Technologies Used
+Kotlin: The primary programming language for the app, leveraging its concise syntax and safety features.
 
 Jetpack Navigation Component: For managing app navigation, ensuring a smooth and user-friendly flow throughout the app.
 
@@ -38,7 +41,8 @@ Retrofit: For network operations, particularly for fetching weather data and oth
 
 Shared Preferences: For managing small, simple key-value pairs, particularly useful for storing user login status and preferences locally on the device.
 
-App Structure Authentication: Secure login and registration screens implemented using Firebase Authentication.
+App Structure
+Authentication: Secure login and registration screens implemented using Firebase Authentication.
 
 HomeFragment: The main landing page displaying promotional banners (using BannerViewPager) and popular products.
 
@@ -56,20 +60,34 @@ ViewAllProductFragment: Admin-specific functionality for viewing all products, w
 
 Address Management: Separate fragments for viewing all addresses (ViewAllAddressFragment) and adding new addresses (AddDeliveryAddressFragment).
 
-WhatsApp Image 2024-08-25 at 7 00 46 AM
+![WhatsApp Image 2024-08-25 at 7 00 46 AM](https://github.com/user-attachments/assets/c6b56045-c736-4189-ad97-6e2a4ed6e58c)
 
-Getting Started To run this project locally, follow these steps:
+Getting Started
+To run this project locally, follow these steps:
 
 Clone the repository:
 
-bash Copy code git clone https://github.com/YourUsername/ShopSmart.git cd ShopSmart Set up Firebase:
+bash
+Copy code
+git clone https://github.com/YourUsername/ShopSmart.git
+cd ShopSmart
+Set up Firebase:
 
-Create a Firebase project in the Firebase Console. Add your Android app to the Firebase project and follow the setup instructions to obtain the google-services.json file. Place the google-services.json file in the app/ directory of your project. Configure dependencies:
+Create a Firebase project in the Firebase Console.
+Add your Android app to the Firebase project and follow the setup instructions to obtain the google-services.json file.
+Place the google-services.json file in the app/ directory of your project.
+Configure dependencies:
 
-Ensure that all dependencies in your build.gradle files are up-to-date. Run the app:
+Ensure that all dependencies in your build.gradle files are up-to-date.
+Run the app:
 
-Build and run the app on an Android device or emulator. Screenshots Include screenshots of different parts of the app here to give a visual overview of the user experience.
+Build and run the app on an Android device or emulator.
+Screenshots
+Include screenshots of different parts of the app here to give a visual overview of the user experience.
 
-Contributions Contributions are welcome! Please fork the repository and submit a pull request for any changes you would like to make. Be sure to follow the coding standards and provide detailed information about your changes in the pull request description.
 
-License This project is licensed under the MIT License - see the LICENSE file for details.
+Contributions
+Contributions are welcome! Please fork the repository and submit a pull request for any changes you would like to make. Be sure to follow the coding standards and provide detailed information about your changes in the pull request description.
+
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
