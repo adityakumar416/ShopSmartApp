@@ -1,8 +1,8 @@
-ShopSmart - Your Smart Shopping Companion
+# ShopSmart - Your Smart Shopping Companion
 
-Welcome to ShopSmart, an intuitive and user-friendly e-commerce app designed to provide users with a seamless shopping experience. Whether you're browsing through our curated collections or managing your wishlist, ShopSmart offers all the essential features for a modern shopping app.
+ Welcome to ShopSmart, an intuitive and user-friendly e-commerce app designed to provide users with a seamless shopping experience. Whether you're browsing through our curated collections or managing your wishlist, ShopSmart offers all the essential features for a modern shopping app.
 
-Key Features
+## Key Features
 User Authentication: Secure login and registration process with email verification to ensure a safe shopping environment.
 
 Product Listings: Browse through a wide range of products across various categories like electronics, clothing, beauty products, and more.
@@ -23,7 +23,7 @@ Seamless Navigation: Enjoy smooth transitions between different sections of the 
 
 Order Tracking: Keep track of your orders in the "My Orders" section, complete with status updates and detailed order information.
 
-Technologies Used
+## Technologies Used
 Kotlin: The primary programming language for the app, leveraging its concise syntax and safety features.
 
 Jetpack Navigation Component: For managing app navigation, ensuring a smooth and user-friendly flow throughout the app.
@@ -42,7 +42,7 @@ Retrofit: For network operations, particularly for fetching weather data and oth
 
 Shared Preferences: For managing small, simple key-value pairs, particularly useful for storing user login status and preferences locally on the device.
 
-App Structure
+## App Structure
 Authentication: Secure login and registration screens implemented using Firebase Authentication.
 
 HomeFragment: The main landing page displaying promotional banners (using BannerViewPager) and popular products.
@@ -61,21 +61,10 @@ ViewAllProductFragment: Admin-specific functionality for viewing all products, w
 
 Address Management: Separate fragments for viewing all addresses (ViewAllAddressFragment) and adding new addresses (AddDeliveryAddressFragment).
 
-App Images..
-
-![WhatsApp Image 2024-08-25 at 7 00 46 AM](https://github.com/user-attachments/assets/c6b56045-c736-4189-ad97-6e2a4ed6e58c)
-![WhatsApp Image 2024-08-25 at 7 00 47 AM](https://github.com/user-attachments/assets/e4ee9b21-553e-4c7f-a847-a4df9dab9b03)
-![WhatsApp Image 2024-08-25 at 7 00 48 AM](https://github.com/user-attachments/assets/84107057-b148-4b62-a842-01a30100461c)
-![WhatsApp Image 2024-08-25 at 7 00 48 AM (1)](https://github.com/user-attachments/assets/584231df-c500-4606-aa58-2e5b27699fff)
-![WhatsApp Image 2024-08-25 at 7 00 48 AM (2)](https://github.com/user-attachments/assets/ede15d7f-7381-4929-a2c5-be025566a116)
-![WhatsApp Image 2024-08-25 at 7 00 47 AM (1)](https://github.com/user-attachments/assets/1718e4b8-ef92-42df-bb40-4dce78f60881)
-![WhatsApp Image 2024-08-25 at 7 00 47 AM (2)](https://github.com/user-attachments/assets/5ae1aba2-5801-404d-9056-70dad1fad111)
-
-
 Getting Started
 To run this project locally, follow these steps:
 
-Clone the repository:
+## Clone the repository:
 
 bash
 Copy code
@@ -92,9 +81,19 @@ Ensure that all dependencies in your build.gradle files are up-to-date.
 Run the app:
 
 Build and run the app on an Android device or emulator.
-Screenshots
-Include screenshots of different parts of the app here to give a visual overview of the user experience.
 
+## App Screenshots..
+
+![WhatsApp Image 2024-08-25 at 7 00 46 AM](https://github.com/user-attachments/assets/c6b56045-c736-4189-ad97-6e2a4ed6e58c)
+![WhatsApp Image 2024-08-25 at 7 00 47 AM](https://github.com/user-attachments/assets/e4ee9b21-553e-4c7f-a847-a4df9dab9b03)
+![WhatsApp Image 2024-08-25 at 7 00 48 AM](https://github.com/user-attachments/assets/84107057-b148-4b62-a842-01a30100461c)
+![WhatsApp Image 2024-08-25 at 7 00 48 AM (1)](https://github.com/user-attachments/assets/584231df-c500-4606-aa58-2e5b27699fff)
+![WhatsApp Image 2024-08-25 at 7 00 48 AM (2)](https://github.com/user-attachments/assets/ede15d7f-7381-4929-a2c5-be025566a116)
+![WhatsApp Image 2024-08-25 at 7 00 47 AM (1)](https://github.com/user-attachments/assets/1718e4b8-ef92-42df-bb40-4dce78f60881)
+![WhatsApp Image 2024-08-25 at 7 00 47 AM (2)](https://github.com/user-attachments/assets/5ae1aba2-5801-404d-9056-70dad1fad111)
+
+
+Include screenshots of different parts of the app here to give a visual overview of the user experience.
 
 Contributions
 Contributions are welcome! Please fork the repository and submit a pull request for any changes you would like to make. Be sure to follow the coding standards and provide detailed information about your changes in the pull request description.
