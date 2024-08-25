@@ -80,6 +80,11 @@ class CartFragment : Fragment(), ProductClickListner, QuantityChangeListener {
             binding.paymentMode.text = method
         }
 
+        // Handle back button click
+        binding.backIcon.setOnClickListener {
+            findNavController().navigateUp() // Navigate back to the previous screen
+        }
+
         // Fetch cart items and selected address
         viewModel.fetchCartItems()
         viewModel.loadSelectedAddressFromFirestore()

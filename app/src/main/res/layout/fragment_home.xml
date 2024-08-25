@@ -120,13 +120,13 @@
             app:layout_constraintTop_toBottomOf="@+id/textView3">
 
             <LinearLayout
-                android:id="@+id/linearLayout6"
+                android:id="@+id/digitals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+                app:layout_constraintEnd_toStartOf="@+id/cloths"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -146,15 +146,15 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout"
+                android:id="@+id/cloths"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/linearLayout7"
+                app:layout_constraintEnd_toStartOf="@+id/tools"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/linearLayout6"
+                app:layout_constraintStart_toEndOf="@+id/digitals"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
@@ -172,15 +172,15 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout7"
+                android:id="@+id/tools"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/linearLayout8"
+                app:layout_constraintEnd_toStartOf="@+id/beauty"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                app:layout_constraintStart_toEndOf="@+id/cloths"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
@@ -198,15 +198,15 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout8"
+                android:id="@+id/beauty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/linearLayout9"
+                app:layout_constraintEnd_toStartOf="@+id/view_all"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/linearLayout7"
+                app:layout_constraintStart_toEndOf="@+id/tools"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
@@ -224,7 +224,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout9"
+                android:id="@+id/view_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -232,7 +232,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/linearLayout8"
+                app:layout_constraintStart_toEndOf="@+id/beauty"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView

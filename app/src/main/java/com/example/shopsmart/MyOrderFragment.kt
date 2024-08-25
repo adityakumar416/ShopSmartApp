@@ -43,6 +43,11 @@ class MyOrderFragment : Fragment(), OrderClickListner {
         }
         binding.chipGroup.check(selectedChipId)
 
+        // Handle back button click
+        binding.backIcon.setOnClickListener {
+            findNavController().navigateUp() // Navigate back to the previous screen
+        }
+
         return binding.root
     }
 

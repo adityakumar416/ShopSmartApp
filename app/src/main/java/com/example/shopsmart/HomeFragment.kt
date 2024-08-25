@@ -36,6 +36,31 @@ class HomeFragment : Fragment(), ProductClickListner {
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        (activity as MainActivity).setBottomNavigationVisibility(true)
+
+        binding.textView9.setOnClickListener {
+            navigateToCategory("AllProducts")
+        }
+
+        binding.viewAll.setOnClickListener {
+            navigateToCategory("AllProducts")
+        }
+
+        binding.cloths.setOnClickListener {
+            navigateToCategory("Cloths")
+        }
+
+        binding.digitals.setOnClickListener {
+                navigateToCategory("Digital")
+        }
+        binding.tools.setOnClickListener {
+            navigateToCategory("Tools")
+        }
+
+        binding.beauty.setOnClickListener {
+            navigateToCategory("Beauty")
+        }
+
         // Initialize BannerViewPager
         bannerViewPager = binding.root.findViewById(R.id.banner_view)
         bannerViewPager.apply {
@@ -70,10 +95,16 @@ class HomeFragment : Fragment(), ProductClickListner {
             productAdapter.updateData(products)
             binding.productProgressBar.visibility = View.GONE
         }
-        mainViewModel.fetchProducts()
+        mainViewModel.fetchProducts(null)
         mainViewModel.fetchBanners()
 
         return binding.root
+    }
+
+
+    fun navigateToCategory(category: String) {
+        val action = HomeFragmentDirections.actionHomeFragmentToViewAllProductFragment(category)
+        findNavController().navigate(action)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

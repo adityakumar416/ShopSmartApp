@@ -78,17 +78,30 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    // Fetch all products from Firestore
-    fun fetchProducts() {
+    fun fetchProducts(category: String? = null) {
         viewModelScope.launch {
             try {
-                val allProductsSnapshot = firestoreProduct.collection("allproducts").get().await()
-                val products = allProductsSnapshot.toObjects(ProductModel::class.java)
+                // Initialize the query based on the provided category
+                val query = if (category.isNullOrEmpty() || category == "AllProducts") {
+                    firestoreProduct.collection("allproducts").get()
+                } else {
+                    firestoreProduct.collection("allproducts")
+                        .whereEqualTo("category", category)
+                        .get()
+                }
+
+                // Await the query result
+                val productSnapshot = query.await()
+                val products = productSnapshot.toObjects(ProductModel::class.java)
+
+                // Post the fetched products to the LiveData only after filtering is done
                 productList.postValue(products)
-                Log.d("MainViewModel", "Fetched all products: $products")
+                Log.d("MainViewModel", "Fetched products: $products")
+
             } catch (e: Exception) {
+                // Post an empty list in case of an error to avoid showing all products
                 productList.postValue(emptyList())
-                Log.e("MainViewModel", "Error fetching all products", e)
+                Log.e("MainViewModel", "Error fetching products", e)
             }
         }
     }

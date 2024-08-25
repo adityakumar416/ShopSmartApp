@@ -51,6 +51,12 @@ class ProfileFragment : Fragment() {
             addProfileItem(cardItem)
         }
 
+
+        // Handle back button click
+        binding.backIcon.setOnClickListener {
+            findNavController().navigateUp() // Navigate back to the previous screen
+        }
+
         return binding.root
     }
 
