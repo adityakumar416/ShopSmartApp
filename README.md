@@ -1,4 +1,5 @@
 ShopSmart - Your Smart Shopping Companion
+
 Welcome to ShopSmart, an intuitive and user-friendly e-commerce app designed to provide users with a seamless shopping experience. Whether you're browsing through our curated collections or managing your wishlist, ShopSmart offers all the essential features for a modern shopping app.
 
 Key Features
