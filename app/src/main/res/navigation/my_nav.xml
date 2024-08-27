@@ -65,6 +65,9 @@
         <action
             android:id="@+id/action_profileFragment_to_wishlistFragment"
             app:destination="@id/wishlistFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
@@ -119,6 +122,10 @@
             app:argType="string"
             android:defaultValue=""/>
     </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.shopsmart.EditProfileFragment"
+        android:label="EditProfileFragment" />
 
 
 </navigation>

@@ -1,0 +1,152 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/topview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="22dp">
+
+        <ImageView
+            android:id="@+id/back_icon"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:id="@+id/favorite_icons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Edit Profile"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topview"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/image_container"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_centerInParent="true"
+                    android:elevation="12dp"
+                    android:src="@drawable/srk_image"
+                    app:civ_border_width="2dp" />
+
+
+            </RelativeLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_container"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="20dp"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="34dp"
+                app:boxCornerRadiusBottomStart="34dp"
+                app:boxCornerRadiusTopEnd="34dp"
+                app:boxCornerRadiusTopStart="34dp"
+                app:startIconDrawable="@drawable/user_icon"
+
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Full Name"
+                    android:text="Aditya Kumar"
+                    android:paddingStart="46dp"
+                    android:padding="14dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_container"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="20dp"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="34dp"
+                app:boxCornerRadiusBottomStart="34dp"
+                app:boxCornerRadiusTopEnd="34dp"
+                app:boxCornerRadiusTopStart="34dp"
+                app:startIconDrawable="@drawable/email_icon"
+
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="E Mail"
+                    android:text="aditya0683624@gmail.com"
+                    android:paddingStart="46dp"
+                    android:padding="14dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_container"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="20dp"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="34dp"
+                app:boxCornerRadiusBottomStart="34dp"
+                app:boxCornerRadiusTopEnd="34dp"
+                app:boxCornerRadiusTopStart="34dp"
+                app:startIconDrawable="@drawable/phone_icon"
+
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone No"
+                    android:text="8979116063"
+                    android:paddingStart="46dp"
+                    android:padding="14dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:text="Edit Profile"
+                android:layout_margin="20dp"
+                android:textSize="15dp"
+                android:backgroundTint="@color/colorPrimaryDark"/>
+
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>

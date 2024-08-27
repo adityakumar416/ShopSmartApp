@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.navigateUp
 import com.example.shopsmart.databinding.FragmentProfileBinding
 import com.example.shopsmart.viewModel.MainViewModel
 
@@ -96,7 +97,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun handleEditProfileClick() {
-        Toast.makeText(requireContext(), "Edit Profile clicked", Toast.LENGTH_SHORT).show()
+       findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
     }
 
     private fun handleShoppingAddressClick() {
