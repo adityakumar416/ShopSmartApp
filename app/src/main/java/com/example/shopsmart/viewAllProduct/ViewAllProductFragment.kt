@@ -71,8 +71,18 @@ class ViewAllProductFragment : Fragment(), ProductClickListner {
 
     // Observer for product list updates
     private val productListObserver = Observer<List<ProductModel>> { products ->
-        // Update adapter with new product list
-        allProductAdapter?.updateList(products)
+        // Check if product list is empty
+        if (products.isEmpty()) {
+            // Show empty list layout
+            binding.emptyList.visibility = View.VISIBLE
+            binding.recyclerViewLayout.visibility = View.GONE
+        } else {
+            // Hide empty list layout
+            binding.emptyList.visibility = View.GONE
+            binding.recyclerViewLayout.visibility = View.VISIBLE
+            // Update adapter with new product list
+            allProductAdapter?.updateList(products)
+        }
         // Hide progress bar once data is loaded
         binding.allProductProgressBar.visibility = View.GONE
     }
