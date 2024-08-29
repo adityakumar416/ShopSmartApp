@@ -31,8 +31,7 @@ class HomeFragment : Fragment(), ProductClickListner {
     private var scrollPosition = 0
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
@@ -51,7 +50,7 @@ class HomeFragment : Fragment(), ProductClickListner {
         }
 
         binding.digitals.setOnClickListener {
-                navigateToCategory("Digital")
+            navigateToCategory("Digital")
         }
         binding.tools.setOnClickListener {
             navigateToCategory("Tools")
@@ -82,7 +81,8 @@ class HomeFragment : Fragment(), ProductClickListner {
         })
 
         // Get the screen orientation and set the number of columns
-        val spanCount = if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) 2 else 4
+        val spanCount =
+            if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) 2 else 4
 
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), spanCount)
         binding.recyclerView.setHasFixedSize(true)

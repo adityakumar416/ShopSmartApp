@@ -22,8 +22,7 @@ class MyOrderFragment : Fragment(), OrderClickListner {
     private var selectedChipId: Int = R.id.chip_all // Default selected chip ID
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentMyorderBinding.inflate(inflater, container, false)

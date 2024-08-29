@@ -22,17 +22,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.bottomNav
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
 
         // Set up BottomNavigationView with NavController
         navView.setupWithNavController(navController)
 
 
-
-
-
     }
+
     // In your MainActivity or the Activity hosting the BottomNavigationView
     fun setBottomNavigationVisibility(visible: Boolean) {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)

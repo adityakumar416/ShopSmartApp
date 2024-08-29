@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopsmart.adapter.HorizontalProductAdapter
-import com.example.shopsmart.adapter.ProductAdapter
 import com.example.shopsmart.modelClass.ProductModel
 
 class MixedAdapter(
@@ -41,13 +40,17 @@ class MixedAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             VIEW_TYPE_GRID_ITEM -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.product_item, parent, false)
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.product_item, parent, false)
                 GridViewHolder(view)
             }
+
             VIEW_TYPE_HORIZONTAL_LIST -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_horizontal_list, parent, false)
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_horizontal_list, parent, false)
                 HorizontalViewHolder(view)
             }
+
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
@@ -68,6 +71,7 @@ class MixedAdapter(
                     holder.bind(product, clickListener)
                 }
             }
+
             is HorizontalViewHolder -> {
                 holder.bind(allProducts, clickListener)
             }
@@ -110,10 +114,12 @@ class MixedAdapter(
 
     // ViewHolder for Horizontal RecyclerView
     inner class HorizontalViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val horizontalRecyclerView: RecyclerView = itemView.findViewById(R.id.horizontalRecyclerView)
+        private val horizontalRecyclerView: RecyclerView =
+            itemView.findViewById(R.id.horizontalRecyclerView)
 
         fun bind(products: List<ProductModel>, clickListener: ProductClickListner) {
-            horizontalRecyclerView.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+            horizontalRecyclerView.layoutManager =
+                LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
             horizontalRecyclerView.adapter = HorizontalProductAdapter(products, clickListener)
         }
     }

@@ -1,16 +1,16 @@
 package com.example.shopsmart
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.shopsmart.databinding.FragmentEditProfileBinding
 
 
 class EditProfileFragment : Fragment() {
-   private lateinit var binding: FragmentEditProfileBinding
+    private lateinit var binding: FragmentEditProfileBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
