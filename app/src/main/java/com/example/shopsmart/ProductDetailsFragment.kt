@@ -3,13 +3,12 @@ package com.example.shopsmart
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -37,10 +36,12 @@ class ProductDetailsFragment : Fragment() {
 
         // Setting data from navArgs to views
         binding.productName.text = args.productmodel.name
-        binding.productPrice.text = "₹${args.productmodel.price}" // Adding ₹ symbol before the price
+        binding.productPrice.text =
+            "₹${args.productmodel.price}" // Adding ₹ symbol before the price
         binding.rating.text = "${args.productmodel.rating} Rating"
         binding.productDescription.text = args.productmodel.description
-        Glide.with(binding.productImage.context).load(args.productmodel.imageUrl).into(binding.productImage)
+        Glide.with(binding.productImage.context).load(args.productmodel.imageUrl)
+            .into(binding.productImage)
 
         // Set initial favorite icon based on favorite status
         updateFavoriteIcon(args.productmodel.favoriteProduct)
@@ -89,7 +90,8 @@ class ProductDetailsFragment : Fragment() {
 
         val orderId = generateUniqueOrderId()
         val orderDate = getCurrentDate()
-        val paymentMethod = mainViewModel.selectedPaymentMethod.value // Assuming Cash on Delivery (you can change this as per your payment method selection)
+        val paymentMethod =
+            mainViewModel.selectedPaymentMethod.value // Assuming Cash on Delivery (you can change this as per your payment method selection)
         val orderStatus = "Pending"
         val deliveryDate = "2024-08-31" // Example date; you might get this from user input
 
@@ -115,7 +117,7 @@ class ProductDetailsFragment : Fragment() {
         mainViewModel.placeOrder(order, activity as MainActivity)
 
         // Optionally, navigate to a confirmation screen or display a success message
-     //   findNavController().navigate(R.id.action_productDetailsFragment_to_orderConfirmationFragment)
+        //   findNavController().navigate(R.id.action_productDetailsFragment_to_orderConfirmationFragment)
     }
 
     private fun generateUniqueOrderId(): String {

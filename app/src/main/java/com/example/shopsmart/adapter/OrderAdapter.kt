@@ -13,8 +13,7 @@ import com.example.shopsmart.interfaces.OrderClickListner
 import com.example.shopsmart.modelClass.OrderModel
 
 class OrderAdapter(
-    private var orderList: List<OrderModel>,
-    private val orderClickListner: OrderClickListner
+    private var orderList: List<OrderModel>, private val orderClickListner: OrderClickListner
 ) : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {

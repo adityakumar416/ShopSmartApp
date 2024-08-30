@@ -7,9 +7,14 @@ import com.example.shopsmart.modelClass.BannerModel
 import com.zhpan.bannerview.BaseBannerAdapter
 import com.zhpan.bannerview.BaseViewHolder
 
-class BannerAdapter  : BaseBannerAdapter<BannerModel>() {
+class BannerAdapter : BaseBannerAdapter<BannerModel>() {
 
-    override fun bindData(holder: BaseViewHolder<BannerModel>, data: BannerModel?, position: Int, pageSize: Int) {
+    override fun bindData(
+        holder: BaseViewHolder<BannerModel>,
+        data: BannerModel?,
+        position: Int,
+        pageSize: Int
+    ) {
         val imageStart: ImageView = holder.findViewById(R.id.imageSlider)
 
         Glide.with(imageStart.context).load(data?.url).into(imageStart)

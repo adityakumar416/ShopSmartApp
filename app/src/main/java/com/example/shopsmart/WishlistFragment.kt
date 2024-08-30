@@ -18,8 +18,7 @@ class WishlistFragment : Fragment() {
     private lateinit var mixedAdapter: MixedAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = FragmentWishlistBinding.inflate(inflater, container, false)
 
@@ -42,7 +41,10 @@ class WishlistFragment : Fragment() {
         // Initialize Mixed Adapter
         mixedAdapter = MixedAdapter(emptyList(), emptyList(), object : ProductClickListner {
             override fun onClick(product: ProductModel) {
-                val action = WishlistFragmentDirections.actionWishlistFragmentToProductDetailsFragment(product)
+                val action =
+                    WishlistFragmentDirections.actionWishlistFragmentToProductDetailsFragment(
+                        product
+                    )
                 findNavController().navigate(action)
             }
 

@@ -16,7 +16,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.navigateUp
 import com.example.shopsmart.databinding.FragmentProfileBinding
 import com.example.shopsmart.viewModel.MainViewModel
 
@@ -25,8 +24,7 @@ class ProfileFragment : Fragment() {
     private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false)
@@ -51,7 +49,6 @@ class ProfileFragment : Fragment() {
         demoItems.forEach { cardItem ->
             addProfileItem(cardItem)
         }
-
 
         // Handle back button click
         binding.backIcon.setOnClickListener {
@@ -97,7 +94,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun handleEditProfileClick() {
-       findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
+        findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
     }
 
     private fun handleShoppingAddressClick() {
@@ -164,9 +161,7 @@ class ProfileFragment : Fragment() {
         }
 
         val dialog = context?.let {
-            AlertDialog.Builder(it)
-                .setTitle("Select Payment Method")
-                .setView(dialogView)
+            AlertDialog.Builder(it).setTitle("Select Payment Method").setView(dialogView)
                 .setPositiveButton("OK") { _, _ ->
                     // Get the selected payment method
                     val selectedMethod = dialogView.findViewById<RadioButton>(
@@ -176,9 +171,7 @@ class ProfileFragment : Fragment() {
                     // Save the selected payment method in ViewModel
                     mainViewModel.savePaymentMethod(selectedMethod)
 
-                }
-                .setNegativeButton("Cancel", null)
-                .create()
+                }.setNegativeButton("Cancel", null).create()
         }
 
         dialog?.show()
