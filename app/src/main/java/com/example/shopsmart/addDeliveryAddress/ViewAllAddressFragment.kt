@@ -21,8 +21,7 @@ class ViewAllAddressFragment : Fragment(), AddressSelectListener {
     private var adapter: AddressAdapter? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = FragmentViewAllAddressBinding.inflate(inflater, container, false)
 
@@ -92,7 +91,10 @@ class ViewAllAddressFragment : Fragment(), AddressSelectListener {
     }
 
     override fun onAddressEditRequested(address: AddressModel) {
-        val action = ViewAllAddressFragmentDirections.actionViewAllAddressFragmentToUpdateAddressFragment(address)
+        val action =
+            ViewAllAddressFragmentDirections.actionViewAllAddressFragmentToUpdateAddressFragment(
+                address
+            )
         findNavController().navigate(action)
     }
 

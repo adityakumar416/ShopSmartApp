@@ -14,4 +14,4 @@ data class AddressModel(
     val state: String = "",
     val landmark: String = "",
     var selectedAddress: Boolean = false // New property to track the selected state
-): Parcelable
+) : Parcelable

@@ -53,9 +53,11 @@ class AddressAdapter(
         notifyDataSetChanged()
     }
 
-    inner class AddressViewHolder(val binding: AddressItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class AddressViewHolder(val binding: AddressItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(address: AddressModel) {
-            binding.tvAddress.text = "${address.name}\n${address.address}, ${address.landmark}\n${address.city}, ${address.state} - ${address.pincode}"
+            binding.tvAddress.text =
+                "${address.name}\n${address.address}, ${address.landmark}\n${address.city}, ${address.state} - ${address.pincode}"
         }
     }
 }
