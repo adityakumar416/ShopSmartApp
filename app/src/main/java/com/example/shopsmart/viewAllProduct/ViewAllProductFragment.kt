@@ -39,7 +39,8 @@ class ViewAllProductFragment : Fragment(), ProductClickListner {
         binding.recyclerView.adapter = allProductAdapter
 
         // Set layout manager for RecyclerView based on screen orientation
-        val spanCount = if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) 2 else 4
+        val spanCount =
+            if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) 2 else 4
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), spanCount)
         binding.recyclerView.setHasFixedSize(true)
 
@@ -55,10 +56,10 @@ class ViewAllProductFragment : Fragment(), ProductClickListner {
             mainViewModel.fetchProducts(category)
         }
 
-        if(args.category == "AllProducts"){
+        if (args.category == "AllProducts") {
             binding.title.text = "All Products"
-        }else{
-            binding.title.text = args.category +" Products"
+        } else {
+            binding.title.text = args.category + " Products"
 
         }
         // Handle back button click
@@ -89,7 +90,10 @@ class ViewAllProductFragment : Fragment(), ProductClickListner {
 
     override fun onClick(product: ProductModel) {
         // Navigate to ProductDetailsFragment with the selected product
-        val action = ViewAllProductFragmentDirections.actionViewAllProductFragmentToProductDetailsFragment(product)
+        val action =
+            ViewAllProductFragmentDirections.actionViewAllProductFragmentToProductDetailsFragment(
+                product
+            )
         findNavController().navigate(action)
     }
 

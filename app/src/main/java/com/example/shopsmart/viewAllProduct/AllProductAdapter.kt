@@ -9,14 +9,19 @@ import com.example.shopsmart.R
 import com.example.shopsmart.databinding.ProductItemBinding
 import com.example.shopsmart.modelClass.ProductModel
 
-class AllProductAdapter(private var productList: List<ProductModel>, private var listener: ProductClickListner) : RecyclerView.Adapter<AllProductAdapter.ViewHolder>() {
+class AllProductAdapter(
+    private var productList: List<ProductModel>,
+    private var listener: ProductClickListner
+) : RecyclerView.Adapter<AllProductAdapter.ViewHolder>() {
 
-    inner class ViewHolder(private val binding: ProductItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ProductItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(product: ProductModel) {
             binding.productName.text = product.name
             binding.price.text = "₹ ${product.price}"
             binding.rating.text = product.rating.toString()
-            Glide.with(binding.productImage.context).load(product.imageUrl).into(binding.productImage)
+            Glide.with(binding.productImage.context).load(product.imageUrl)
+                .into(binding.productImage)
 
             // binding.productImage.setImageResource(R.drawable.item_1)
 

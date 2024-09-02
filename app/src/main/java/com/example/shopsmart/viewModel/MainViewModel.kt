@@ -6,7 +6,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.shopsmart.MainActivity
 import com.example.shopsmart.addDeliveryAddress.AddressModel
@@ -41,7 +40,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     // A variable to store the original list of all fetched orders
     private var originalOrderList: List<OrderModel> = emptyList()
 
-    private val sharedPreferences = application.getSharedPreferences("ShopSmartPrefs", Context.MODE_PRIVATE)
+    private val sharedPreferences =
+        application.getSharedPreferences("ShopSmartPrefs", Context.MODE_PRIVATE)
     val selectedPaymentMethod = MutableLiveData<String>()
 
     init {
@@ -55,7 +55,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun loadPaymentMethod(): String {
-        return sharedPreferences.getString("payment_method", "Cash on Delivery") ?: "Cash on Delivery"
+        return sharedPreferences.getString("payment_method", "Cash on Delivery")
+            ?: "Cash on Delivery"
     }
 
     // user address
@@ -85,8 +86,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 val query = if (category.isNullOrEmpty() || category == "AllProducts") {
                     firestoreProduct.collection("allproducts").get()
                 } else {
-                    firestoreProduct.collection("allproducts")
-                        .whereEqualTo("category", category)
+                    firestoreProduct.collection("allproducts").whereEqualTo("category", category)
                         .get()
                 }
 
@@ -113,9 +113,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 val existingProduct = cartCollection.document(product.id).get().await()
                 if (existingProduct.exists()) {
                     Toast.makeText(
-                        activity,
-                        "Product is already added to the cart",
-                        Toast.LENGTH_SHORT
+                        activity, "Product is already added to the cart", Toast.LENGTH_SHORT
                     ).show()
                     Log.d("MainViewModel", "Product already in cart: ${product.id}")
                 } else {
@@ -192,12 +190,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         val db = FirebaseFirestore.getInstance()
         val ordersCollection = db.collection("orders")
 
-        ordersCollection.document(order.orderId)
-            .set(order)
-            .addOnSuccessListener {
+        ordersCollection.document(order.orderId).set(order).addOnSuccessListener {
                 Toast.makeText(activity, "Order placed successfully!", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener { e ->
+            }.addOnFailureListener { e ->
                 Toast.makeText(activity, "Failed to place order: ${e.message}", Toast.LENGTH_LONG)
                     .show()
             }
@@ -229,37 +224,30 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         val documentReference = firestore.collection("addresses").document()
 
         val addressWithId = addressModel.copy(id = documentReference.id)
-        documentReference.set(addressWithId)
-            .addOnSuccessListener {
+        documentReference.set(addressWithId).addOnSuccessListener {
                 saveStatus.value = true
-            }
-            .addOnFailureListener {
+            }.addOnFailureListener {
                 saveStatus.value = false
             }
     }
 
     fun updateAddress(address: AddressModel) {
         val document = firestore.collection("addresses").document(address.id)
-        document.set(address)
-            .addOnSuccessListener {
+        document.set(address).addOnSuccessListener {
                 saveStatus.value = true
-            }
-            .addOnFailureListener {
+            }.addOnFailureListener {
                 saveStatus.value = false
             }
     }
 
     // ViewModel code for fetching and managing addresses
     fun fetchAddresses() {
-        firestore.collection("addresses")
-            .get()
-            .addOnSuccessListener { documents ->
+        firestore.collection("addresses").get().addOnSuccessListener { documents ->
                 val addressList = documents.mapNotNull { document ->
                     document.toObject(AddressModel::class.java)?.copy(id = document.id)
                 }
                 addresses.value = addressList
-            }
-            .addOnFailureListener {
+            }.addOnFailureListener {
                 addresses.value = emptyList()
             }
     }
@@ -276,20 +264,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun saveSelectedAddressToFirestore(address: AddressModel) {
-        firestore.collection("users")
-            .document(userId)
-            .collection("addresses")
-            .document("selectedAddress")
-            .set(address) // Firestore handles serialization
+        firestore.collection("users").document(userId).collection("addresses")
+            .document("selectedAddress").set(address) // Firestore handles serialization
     }
 
     fun loadSelectedAddressFromFirestore() {
-        firestore.collection("users")
-            .document(userId)
-            .collection("addresses")
-            .document("selectedAddress")
-            .get()
-            .addOnSuccessListener { document ->
+        firestore.collection("users").document(userId).collection("addresses")
+            .document("selectedAddress").get().addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
                     val address = document.toObject(AddressModel::class.java)
                     selectedAddress.value = address
@@ -310,7 +291,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             originalOrderList.filter { it.orderStatus == status }
         }
     }
-
 
 
 }
